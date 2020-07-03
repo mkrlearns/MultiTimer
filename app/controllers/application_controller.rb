@@ -16,19 +16,16 @@ class ApplicationController < Sinatra::Base
   get('/logout') { session.destroy; redirect '/' }
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
-    session[:user_id] = @user.id if user && user.authenticate(params[:password])
-    redirect '/'
-  end
-
-  post '/signup' do
-    [params[:username], params[:email], params[:password]].each do |param|
-      redirect '/signup' if param.empty?
-    end
-    @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-    @user.save
+    @user = User.find_by(email: params[:email])
+    if !@user
+      @user = User.new(email: params[:email], password: params[:password])
+      @user.save
+    elsif !@user.authenticate(params[:password])
+      puts "An account with that email already exists." # Change to error msg
+      redirect '/'
+      return
     session[:user_id] = @user.id
-    redirect '/'
+    erb :index
   end
 
 end
