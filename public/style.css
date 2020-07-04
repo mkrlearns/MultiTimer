@@ -63,6 +63,52 @@ ul {
   margin-top: 15px;
 }
 
+.popup #minutes,
+.popup #seconds,
+.popup #label {
+  width: 92px;
+}
+
+.popup #label {
+  color: #fff;
+  background: #232931;
+  margin-top: 0px;
+  cursor: initial;
+}
+
+.popup form {
+  color: #fff;
+}
+
+input:invalid {
+  border: 2px solid #f86565;
+}
+
+input {
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="number"] {
+  cursor: text;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="reset"] {
+  background: #fff;
+}
+
 .menu,
 .options,
 .pause,

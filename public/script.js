@@ -7,6 +7,11 @@ const options = document.querySelector(".options");
 const content = document.querySelector(".content");
 let menu_lock = false;
 
+const togglePopup = (elem) => {
+  const popup = document.querySelector(elem);
+  popup.style.display = popup.style.display == "none" ? "" : "none";
+}
+
 for (const text of texts) text.style.opacity = "0";
 
 function sidebarCheck() {

@@ -8,6 +8,18 @@
     </form>
   </div>
 <% end %>
+<div class='popup' id="new" style="display: none;">
+  <h2>New Timer</h2>
+  <form action='/timer' method='POST'>
+    <input type='text' id="label" disabled="disabled" value="Minutes" />
+    <input type='text' id="label" disabled="disabled" value="Seconds" />
+    <input type='number' min='0' max='99' id='minutes' name='minutes' placeholder='00' /> :
+    <input type='number' min='0' max='59' id='seconds' name='seconds' placeholder='00' />
+    <br>
+    <input type='submit' id='submit' value='Submit' />
+    <input type="reset" value="Cancel" onclick="togglePopup('#new')" />
+  </form>
+</div>
 <div class="container">
   <div class="sidebar-background sidebar-collapsed"></div>
   <div class="sidebar sidebar-collapsed">
@@ -25,6 +37,9 @@
         <span class="text"
           >Facebookerist</i
         ></span>
+      </li>
+      <li class="nav-item">
+        <i onclick="togglePopup('#new')" class="icon ri-add-circle-line" title="New Timer"></i>
       </li>
     </ul>
   </div>
