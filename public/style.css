@@ -25,6 +25,44 @@ ul {
   color: #fff;
 }
 
+.popup {
+  position: absolute;
+  z-index: 4;
+  margin: 100px auto;
+  left: 0;
+  right: 0;
+  background: #232931;
+  border-radius: 20px;
+  box-shadow: -1px 1px 5px 5px rgba(0, 0, 0, 0.8);
+  overflow: auto;
+  text-align: center;
+  padding-bottom: 30px;
+  width: 300px;
+}
+
+.popup h2 {
+  background: #3e7dce;
+  text-align: center;
+  margin-top: 0;
+  padding: 3px;
+  color: #fff;
+}
+
+.popup input {
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+  height: 25px;
+  width: 200px;
+  text-align: center;
+  padding: 0;
+}
+
+.popup #submit {
+  background: #4ecdc4;
+  margin-top: 15px;
+}
+
 .menu,
 .options,
 .pause,
