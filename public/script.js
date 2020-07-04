@@ -17,15 +17,17 @@ function sidebarCheck() {
   }
 }
 
-function sidebarToggle() {
+function sidebarToggle(toggle = true) {
   for (const text of texts) {
     text.style.opacity = !sidebar.classList.contains("sidebar-collapsed")
       ? "0"
       : "1";
   }
-  sidebar.classList.toggle("sidebar-collapsed");
-  sidebarBG.classList.toggle("sidebar-collapsed");
-  sidebarCheck();
+  if (toggle) {
+    sidebar.classList.toggle("sidebar-collapsed");
+    sidebarBG.classList.toggle("sidebar-collapsed");
+    sidebarCheck();
+  }
 }
 
 function linkScroll(obj) {
@@ -38,7 +40,16 @@ function linkScroll(obj) {
 
 ["mouseenter", "mouseleave"].forEach((e) =>
   sidebar.addEventListener(e, () => {
-    if (!menu_lock) sidebarToggle();
+    if (menu_lock) return;
+    sidebarToggle(false);
+    if (e == "mouseenter") {
+      sidebar.classList.remove("sidebar-collapsed");
+      sidebarBG.classList.remove("sidebar-collapsed");
+    } else {
+      sidebar.classList.add("sidebar-collapsed");
+      sidebarBG.classList.add("sidebar-collapsed");
+    }
+    sidebarCheck();
   })
 );
 
