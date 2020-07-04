@@ -161,38 +161,38 @@ progress[role] {
   transition: 0.5s all ease-out;
 }
 
-.timer-1 {
+.timer:nth-child(3n - 1) .timer-bg {
   color: #ff9e2c;
 }
 
-.timer-1::-webkit-progress-value {
+.timer:nth-child(3n - 1) .timer-bg::-webkit-progress-value {
   background: #ff9e2c;
 }
 
-.timer-1::-moz-progress-bar {
+.timer:nth-child(3n - 1) .timer-bg::-moz-progress-bar {
   background: #ff9e2c;
 }
 
-.timer-2 {
+.timer:nth-child(3n + 1) .timer-bg {
   color: #4ecdc4;
 }
 
-.timer-2::-webkit-progress-value {
+.timer:nth-child(3n + 1) .timer-bg::-webkit-progress-value {
   background: #4ecdc4;
 }
 
-.timer-2::-moz-progress-bar {
+.timer:nth-child(3n + 1) .timer-bg::-moz-progress-bar {
   background: #4ecdc4;
 }
 
-.timer-3 {
+.timer:nth-child(3n) .timer-bg {
   color: #ff6b6b;
 }
 
-.timer-3::-webkit-progress-value {
+.timer:nth-child(3n) .timer-bg::-webkit-progress-value {
   background: #ff6b6b;
 }
 
-.timer-3::-moz-progress-bar {
+.timer:nth-child(3n) .timer-bg::-moz-progress-bar {
   background: #ff6b6b;
 }
