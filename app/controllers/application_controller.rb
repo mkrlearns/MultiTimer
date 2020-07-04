@@ -24,6 +24,7 @@ class ApplicationController < Sinatra::Base
       puts "An account with that email already exists." # Change to error msg
       redirect '/'
       return
+    end
     session[:user_id] = @user.id
     erb :index
   end
