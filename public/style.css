@@ -120,23 +120,17 @@ input[type="reset"] {
 }
 
 .menu,
-.options,
-.pause,
-.edit {
+.logout {
   font-size: 24px;
   padding: 12px;
   height: 24px;
+  float: right;
+  margin-left: -20px;
 }
 
 .menu {
   float: left;
   margin-left: 4.2px;
-}
-.options,
-.pause,
-.edit {
-  float: right;
-  margin-left: -20px;
 }
 
 .container {
