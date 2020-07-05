@@ -14,12 +14,8 @@ const togglePopup = (elem) => {
 
 for (const text of texts) text.style.opacity = "0";
 
-function sidebarCheck() {
-  if (sidebar.classList.contains("sidebar-collapsed")) {
-    list.style.marginLeft = "50px";
-  } else {
-    list.style.marginLeft = "150px";
-  }
+function sidebarMargin() {
+  list.style.marginLeft = sidebar.classList.contains("sidebar-collapsed") ? "50px" : "150px";
 }
 
 function sidebarToggle(toggle = true) {
@@ -31,15 +27,7 @@ function sidebarToggle(toggle = true) {
   if (toggle) {
     sidebar.classList.toggle("sidebar-collapsed");
     sidebarBG.classList.toggle("sidebar-collapsed");
-    sidebarCheck();
-  }
-}
-
-function linkScroll(obj) {
-  if (obj.classList.contains("sidebar")) {
-    content.scrollTop = sidebar.scrollTop;
-  } else {
-    sidebar.scrollTop = content.scrollTop;
+    sidebarMargin();
   }
 }
 
@@ -54,7 +42,7 @@ function linkScroll(obj) {
       sidebar.classList.add("sidebar-collapsed");
       sidebarBG.classList.add("sidebar-collapsed");
     }
-    sidebarCheck();
+    sidebarMargin();
   })
 );
 
