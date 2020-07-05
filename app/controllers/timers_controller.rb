@@ -4,17 +4,26 @@ class TimersController < ApplicationController
     (minutes.to_i * 60) + seconds.to_i
   end
 
+  def zero_check(seconds)
+    if seconds < 1
+      redirect '/' #add error
+      true
+    end
+  end
+
   post '/timer' do
     seconds = get_seconds(params[:minutes], params[:seconds])
-    timer = Timer.new(seconds: seconds, running: false, remaining: seconds, started: Time.new.utc)
+    return if zero_check(seconds)
+    timer = Timer.new(seconds: seconds, running: false, remaining: seconds, started: Time.new.utc, title: params[:title])
     current_user.timers << timer
     redirect '/' if current_user.save
   end
 
   patch '/timer/:id/edit' do
     seconds = get_seconds(params[:minutes], params[:seconds])
+    return if zero_check(seconds)
     timer = Timer.find_by_id(params[:id])
-    redirect '/' if timer.update(seconds: seconds, remaining: seconds)
+    redirect '/' if timer.update(seconds: seconds, remaining: seconds, title: params[:title])
   end
 
   delete '/timer/:id/delete' do
