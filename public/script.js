@@ -7,13 +7,30 @@ const options = document.querySelector(".options");
 const content = document.querySelector(".content");
 let menu_lock = false;
 
-const togglePopup = (elem, id = false) => {
+const secondsToMinutes = (secs) => {
+  const mins = Math.floor(secs / 60);
+  return { mins: mins, secs: secs - mins * 60 };
+};
+
+const togglePopup = (elem, id = false, secs = false, title = false) => {
   const popup = document.querySelector(elem);
   popup.style.display = popup.style.display == "none" ? "" : "none";
   if (id) {
     const form = popup.querySelector("form");
     const action = form.getAttribute("action");
     form.setAttribute("action", action.replace("id", id));
+  }
+  if (elem == "#edit" && secs) {
+    const timeString = secondsToMinutes(secs);
+    if (timeString.mins) {
+      popup.querySelector("#minutes").setAttribute("value", timeString.mins);
+    }
+    if (timeString.secs) {
+      popup.querySelector("#seconds").setAttribute("value", timeString.secs);
+    }
+  }
+  if (elem == "#edit" && title) {
+    popup.querySelector("#title").setAttribute("value", title);
   }
 }
 
@@ -71,8 +88,10 @@ const updateBars = (runningCheck = true) => {
       bar.setAttribute("value", 0);
       span.innerText = "00:00";
     } else {
-      const mins = Math.floor(remaining / 60);
-      span.innerText = `${("0" + mins).slice(-2)}:${("0" + (remaining - mins * 60)).slice(-2)}`;
+      const minSec = secondsToMinutes(remaining);
+      span.innerText = `${("0" + minSec.mins).slice(-2)}:${(
+        "0" + minSec.secs
+      ).slice(-2)}`;
       bar.setAttribute("value", parseInt((remaining * 100) / total));
     }
   });
