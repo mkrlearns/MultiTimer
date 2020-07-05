@@ -13,7 +13,18 @@ class ApplicationController < Sinatra::Base
     def seconds_string(secs) "%02d:%02d" % [secs / 60 % 60, secs % 60] end
   end
 
-  get('/') { erb :index }
+  get '/' do
+    if logged_in?
+      current_user.timers.each do |timer|
+        if timer.running
+          time_passed = Time.new.utc.to_i - timer.started.to_i
+          timer.update(remaining: timer.remaining - time_passed)
+        end
+      end
+    end
+    erb :index
+  end
+
   get('/logout') { session.destroy; redirect '/' }
 
   post '/login' do
