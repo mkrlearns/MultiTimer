@@ -37,7 +37,6 @@ const sidebarToggle = (toggle = true) => {
 ["mouseenter", "mouseleave"].forEach((e) =>
   sidebar.addEventListener(e, () => {
     if (menu_lock) return;
-    sidebarToggle(false);
     if (e == "mouseenter") {
       sidebar.classList.remove("sidebar-collapsed");
       sidebarBG.classList.remove("sidebar-collapsed");
@@ -45,6 +44,7 @@ const sidebarToggle = (toggle = true) => {
       sidebar.classList.add("sidebar-collapsed");
       sidebarBG.classList.add("sidebar-collapsed");
     }
+    sidebarToggle(false);
     sidebarMargin();
   })
 );
