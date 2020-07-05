@@ -20,7 +20,7 @@ const togglePopup = (elem, id = false) => {
 for (const text of texts) text.style.opacity = "0";
 
 function sidebarMargin() {
-  list.style.marginLeft = sidebar.classList.contains("sidebar-collapsed") ? "50px" : "150px";
+  list.style.marginLeft = sidebar.classList.contains("sidebar-collapsed") ? "50px" : "115px";
 }
 
 function sidebarToggle(toggle = true) {

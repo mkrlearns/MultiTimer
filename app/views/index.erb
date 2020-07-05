@@ -44,10 +44,23 @@
   <div class="sidebar-background sidebar-collapsed"></div>
   <div class="sidebar sidebar-collapsed">
     <ul class="nav-list">
-      <li class="nav-item">
-        <i class="icon ri-home-6-line"></i>
-        <span class="text">Work</i></span>
-      </li>
+      <% if current_user %>
+        <% current_user.timers.each do |timer| %>
+          <li class="nav-item">
+            <form id="<%= timer.id %>_toggle" method="post" action="/timer/<%= timer.id %>/toggle" style="margin-top: -5px;">
+              <input id="hidden" type="hidden" name="_method" value="patch">
+              <input type='hidden' id="<%= timer.id %>_post_remaining" name='remaining' value="" />
+              <i onclick="document.getElementById('<%= timer.id %>_toggle').submit();" class="icon <% if !timer.running %>ri-play-fill<% else %>ri-pause-fill<% end %>" title="Play/Pause Timer"></i>
+            </form>
+            <i onclick="togglePopup('#edit', <%= timer.id %>)" class="text ri-edit-circle-fill" title="Edit Timer"></i>
+            <form id="<%= timer.id %>_reset" method="post" action="/timer/<%= timer.id %>/reset">
+              <input id="hidden" type="hidden" name="_method" value="patch">
+              <i onclick="document.getElementById('<%= timer.id %>_reset').submit();" class="text ri-restart-fill" title="Reset"></i>
+            </form>
+            <i onclick="togglePopup('#delete', <%= timer.id %>)" class="text ri-close-circle-fill" title="Delete Timer"></i>
+          </li>
+        <% end %>
+      <% end %>
       <li class="nav-item">
         <i onclick="togglePopup('#new')" class="icon ri-add-circle-line" title="New Timer"></i>
       </li>
