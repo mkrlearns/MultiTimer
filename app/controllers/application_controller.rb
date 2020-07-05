@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   helpers do
     def current_user() User.find_by(id: session[:user_id]) end
     def logged_in?() !!current_user end
+    def seconds_string(secs) "%02d:%02d" % [secs / 60 % 60, secs % 60] end
   end
 
   get('/') { erb :index }

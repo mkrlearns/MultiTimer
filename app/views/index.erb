@@ -29,32 +29,18 @@
         <span class="text">Work</i></span>
       </li>
       <li class="nav-item">
-        <i class="icon ri-notification-3-line"></i>
-        <span class="text">School</i></span>
-      </li>
-      <li class="nav-item">
-        <i class="icon ri-message-3-line"></i>
-        <span class="text"
-          >Facebookerist</i
-        ></span>
-      </li>
-      <li class="nav-item">
         <i onclick="togglePopup('#new')" class="icon ri-add-circle-line" title="New Timer"></i>
       </li>
     </ul>
   </div>
   <ul class="timer-list">
-    <span class="bar-text">21:01:20</span>
-    <li class="timer">
-      <progress class="tool progress timer-bg" max="100" value="100" data-tip="Work" data-tip="WORK"> </progress>
-    </li>
-    <span class="bar-text">00:00:30</span>
-    <li class="timer">
-      <progress class="tool progress timer-bg" max="100" value="97" data-tip="WORK"> </progress>
-    </li>
-    <span class="bar-text">21:01:20</span>
-    <li class="timer">
-      <progress class="tool progress timer-bg" max="100" value="100" data-tip="WORK"> </progress>
-    </li>
+    <% if current_user %>
+      <% current_user.timers.each do |timer| %>
+        <span id="<%= timer.id %>_remaining" class="bar-text" title="<%= seconds_string(timer.seconds) %>"><%= seconds_string(timer.remaining) %></span>
+        <li class="timer">
+          <progress id="<%= timer.id %>" class="tool progress timer-bg" max="100" value="<%= (timer.remaining * 100) / timer.seconds %>" running="<%= timer.running %>" seconds="<%= timer.seconds %>" remaining="<%= timer.remaining %>"></progress>
+        </li>
+      <% end %>
+    <% end %>
   </ul>
 </div>

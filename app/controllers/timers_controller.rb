@@ -7,9 +7,8 @@ class TimersController < ApplicationController
   post '/timer' do
     seconds = get_seconds(params[:minutes], params[:seconds])
     timer = Timer.new(seconds: seconds, running: false, remaining: seconds, started: Time.new.utc)
-    user = current_user
-    user.timers << timer
-    redirect '/' if user.save
+    current_user.timers << timer
+    redirect '/' if current_user.save
   end
 
   patch '/timer/:id/edit' do
