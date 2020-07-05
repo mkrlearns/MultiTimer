@@ -7,9 +7,14 @@ const options = document.querySelector(".options");
 const content = document.querySelector(".content");
 let menu_lock = false;
 
-const togglePopup = (elem) => {
+const togglePopup = (elem, id = false) => {
   const popup = document.querySelector(elem);
   popup.style.display = popup.style.display == "none" ? "" : "none";
+  if (id) {
+    const form = popup.querySelector("form");
+    const action = form.getAttribute("action");
+    form.setAttribute("action", action.replace("id", id));
+  }
 }
 
 for (const text of texts) text.style.opacity = "0";
