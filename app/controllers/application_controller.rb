@@ -19,6 +19,8 @@ class ApplicationController < Sinatra::Base
         if timer.running
           time_passed = Time.new.utc.to_i - timer.started.to_i
           timer.update(remaining: timer.remaining - time_passed)
+          timer.update(started: Time.new.utc)
+          timer.update(remaining: 0, running: false) if timer.remaining < 1
         end
       end
     end
