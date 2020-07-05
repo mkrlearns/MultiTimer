@@ -17,16 +17,16 @@ class ApplicationController < Sinatra::Base
   get('/logout') { session.destroy; redirect '/' }
 
   post '/login' do
-    @user = User.find_by(email: params[:email])
-    if !@user
-      @user = User.new(email: params[:email], password: params[:password])
-      @user.save
-    elsif !@user.authenticate(params[:password])
+    user = User.find_by(email: params[:email])
+    if !user
+      user = User.new(email: params[:email], password: params[:password])
+      user.save
+    elsif !user.authenticate(params[:password])
       puts "An account with that email already exists." # Change to error msg
       redirect '/'
       return
     end
-    session[:user_id] = @user.id
+    session[:user_id] = user.id
     erb :index
   end
 
