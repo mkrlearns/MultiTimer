@@ -40,6 +40,13 @@
     <input type="reset" value="Cancel" onclick="togglePopup('#delete')" />
   </form>
 </div>
+<div class='popup' id="logout" style="display: none;">
+  <h2>Logout?</h2>
+  <form action='/logout' method='GET'>
+    <input type='submit' id='submit' value='Logout' style="background: #f86565;" />
+    <input type="reset" value="Cancel" onclick="togglePopup('#logout')" />
+  </form>
+</div>
 <div class="container">
   <div class="sidebar-background sidebar-collapsed"></div>
   <div class="sidebar sidebar-collapsed">
