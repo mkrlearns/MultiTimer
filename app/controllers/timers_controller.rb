@@ -6,7 +6,8 @@ class TimersController < ApplicationController
 
   def zero_check(seconds)
     if seconds < 1
-      redirect '/' #add error
+      flash[:error] = "Timers must be greater than 0 seconds."
+      redirect '/'
       true
     end
   end

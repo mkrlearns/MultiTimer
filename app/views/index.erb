@@ -5,8 +5,22 @@
       <input required type='email' id='email' name='email' placeholder='Email' /><br>
       <input required minlength="8" type='password' id='password' name='password' placeholder='Password' /><br>
       <input type='submit' id='submit' value='Submit' />
+      <% if flash[:error] %>
+        <br><br>
+        <p><%= flash[:error] %></p>
+      <% end %>
     </form>
   </div>
+<% else %>
+  <% if flash[:error] %>
+    <div class='popup' id="error" style="">
+      <h2>Error</h2>
+      <form>
+        <p><%= flash[:error] %></p>
+        <input type="reset" value="Okay" onclick="togglePopup('#error')" />
+      </form>
+    </div>
+  <% end %>
 <% end %>
 <div class='popup' id="new" style="display: none;">
   <h2>New Timer</h2>

@@ -1,7 +1,9 @@
 require './config/environment'
+require 'sinatra/flash'
 class ApplicationController < Sinatra::Base
   configure do
     enable :sessions
+    register Sinatra::Flash
     set :public_folder, 'public'
     set :views, 'app/views'
     set :session_secret, 'ih11Sdfn#kkli!s2_hJd'
@@ -32,10 +34,10 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     user = User.find_by(email: params[:email])
     if !user
-      user = User.new(email: params[:email], password: params[:password])
+      user = User.new(email: params[:email], password: params[:password], error: "")
       user.save
     elsif !user.authenticate(params[:password])
-      puts "An account with that email already exists." # Change to error msg
+      flash[:error] = "An account with that email already exists."
       redirect '/'
       return
     end

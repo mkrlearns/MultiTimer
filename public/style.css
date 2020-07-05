@@ -50,6 +50,13 @@ i {
   width: 300px;
 }
 
+.popup p {
+  width: 200px;
+  text-align: center;
+  margin: auto;
+  color: #f86565;
+}
+
 .popup h2 {
   background: #3e7dce;
   text-align: center;

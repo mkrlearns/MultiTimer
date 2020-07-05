@@ -5,6 +5,7 @@ const list = document.querySelector(".timer-list");
 const menu = document.querySelector(".menu");
 const options = document.querySelector(".options");
 const content = document.querySelector(".content");
+const noTimers = document.querySelectorAll(".nav-list li").length < 2
 let menu_lock = false;
 
 const secondsToMinutes = (secs) => {
@@ -39,6 +40,7 @@ const sidebarMargin = () => {
 }
 
 const sidebarToggle = (toggle = true) => {
+  if (noTimers) return;
   if (toggle) {
     sidebar.classList.toggle("sidebar-collapsed");
     sidebarBG.classList.toggle("sidebar-collapsed");
@@ -53,7 +55,7 @@ const sidebarToggle = (toggle = true) => {
 
 ["mouseenter", "mouseleave"].forEach((e) =>
   sidebar.addEventListener(e, () => {
-    if (menu_lock) return;
+    if (menu_lock || noTimers) return;
     if (e == "mouseenter") {
       sidebar.classList.remove("sidebar-collapsed");
       sidebarBG.classList.remove("sidebar-collapsed");
