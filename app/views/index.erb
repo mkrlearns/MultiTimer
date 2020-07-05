@@ -78,6 +78,7 @@
       <% current_user.timers.each do |timer| %>
         <span id="<%= timer.id %>_remaining" class="bar-text" title="<%= seconds_string(timer.seconds) %>"><%= seconds_string(timer.remaining) %></span>
         <li class="timer">
+          <span class="title"><%= timer.title %></span>
           <progress id="<%= timer.id %>" class="tool progress timer-bg" max="100" value="<%= (timer.remaining * 100) / timer.seconds %>" running="<%= timer.running %>" seconds="<%= timer.seconds %>" remaining="<%= timer.remaining %>"></progress>
         </li>
       <% end %>
