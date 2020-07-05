@@ -1,6 +1,6 @@
 const sidebar = document.querySelector(".sidebar");
 const sidebarBG = document.querySelector(".sidebar-background");
-const texts = document.querySelectorAll(".text");
+const controls = document.querySelectorAll(".control");
 const list = document.querySelector(".timer-list");
 const menu = document.querySelector(".menu");
 const options = document.querySelector(".options");
@@ -17,22 +17,20 @@ const togglePopup = (elem, id = false) => {
   }
 }
 
-for (const text of texts) text.style.opacity = "0";
-
-function sidebarMargin() {
+const sidebarMargin = () => {
   list.style.marginLeft = sidebar.classList.contains("sidebar-collapsed") ? "50px" : "115px";
 }
 
-function sidebarToggle(toggle = true) {
-  for (const text of texts) {
-    text.style.opacity = !sidebar.classList.contains("sidebar-collapsed")
-      ? "0"
-      : "1";
-  }
+const sidebarToggle = (toggle = true) => {
   if (toggle) {
     sidebar.classList.toggle("sidebar-collapsed");
     sidebarBG.classList.toggle("sidebar-collapsed");
     sidebarMargin();
+  }
+  for (const control of controls) {
+    control.style.opacity = sidebar.classList.contains("sidebar-collapsed")
+      ? "0"
+      : "1";
   }
 }
 
@@ -51,7 +49,7 @@ function sidebarToggle(toggle = true) {
   })
 );
 
-menu.addEventListener("click", (e) => {
+const menuToggle = () => {
   sidebarToggle();
   menu_lock = !menu_lock;
-});
+}

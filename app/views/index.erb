@@ -59,12 +59,12 @@
               <input type='hidden' id="<%= timer.id %>_post_remaining" name='remaining' value="" />
               <i onclick="document.getElementById('<%= timer.id %>_toggle').submit();" class="icon <% if !timer.running %>ri-play-fill<% else %>ri-pause-fill<% end %>" title="Play/Pause Timer"></i>
             </form>
-            <i onclick="togglePopup('#edit', <%= timer.id %>)" class="text ri-edit-circle-fill" title="Edit Timer"></i>
+            <i onclick="togglePopup('#edit', <%= timer.id %>)" class="control ri-edit-circle-fill" title="Edit Timer"></i>
             <form id="<%= timer.id %>_reset" method="post" action="/timer/<%= timer.id %>/reset">
               <input id="hidden" type="hidden" name="_method" value="patch">
-              <i onclick="document.getElementById('<%= timer.id %>_reset').submit();" class="text ri-restart-fill" title="Reset"></i>
+              <i onclick="document.getElementById('<%= timer.id %>_reset').submit();" class="control ri-restart-fill" title="Reset"></i>
             </form>
-            <i onclick="togglePopup('#delete', <%= timer.id %>)" class="text ri-close-circle-fill" title="Delete Timer"></i>
+            <i onclick="togglePopup('#delete', <%= timer.id %>)" class="control ri-close-circle-fill" title="Delete Timer"></i>
           </li>
         <% end %>
       <% end %>
