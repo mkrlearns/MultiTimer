@@ -3,9 +3,9 @@ A Sinatra-Powered web application for time management.
 
 This app lets you create timers to help you spend the time you need for multiple tasks.
 
-For more information about how the project was created, visit my blog and watch the demo video.
+For more information about how the project was created, visit my [blog]() or watch the [demo video]().
 
-Install Instructions
+Installation Instructions:
 - Clone this repo
 - Run `bundle install`
 - Run `rake db:migrate`
