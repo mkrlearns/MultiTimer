@@ -13,5 +13,5 @@ Installation Instructions:
 
 For added security when cloning the repo, change the session secret in the Application Controller.
 
-[License](https://github.com/mkrlearns/MultiTimer/blob/master/LICENSE)
+[License](https://github.com/mkrlearns/MultiTimer/blob/master/LICENSE)<br>
 [Contributors Guide](http://contributor-covenant.org)
