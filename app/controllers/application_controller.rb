@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     user = User.find_by(email: params[:email])
     if !user
-      user = User.new(email: params[:email], password: params[:password], error: "")
+      user = User.new(email: params[:email], password: params[:password])
       user.save
     elsif !user.authenticate(params[:password])
       flash[:error] = "An account with that email already exists."
