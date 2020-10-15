@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get('/logout') do
-    endsession.destroy
+    session.destroy
     redirect '/'
   end
 
