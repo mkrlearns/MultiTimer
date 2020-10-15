@@ -10,9 +10,17 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def current_user() User.find_by(id: session[:user_id]) end
-    def logged_in?() !!current_user end
-    def seconds_string(secs) "%02d:%02d" % [secs / 60 % 60, secs % 60] end
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
+
+    def logged_in?
+      !!current_user
+    end
+
+    def seconds_string(secs)
+      "%02d:%02d" % [secs / 60 % 60, secs % 60]
+    end
   end
 
   get '/' do
@@ -29,7 +37,10 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get('/logout') { session.destroy; redirect '/' }
+  get('/logout') do
+    endsession.destroy
+    redirect '/'
+  end
 
   post '/login' do
     user = User.find_by(email: params[:email])
@@ -42,7 +53,7 @@ class ApplicationController < Sinatra::Base
       return
     end
     session[:user_id] = user.id
-    erb :index
+    redirect '/'
   end
 
 end

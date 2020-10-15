@@ -1,17 +1,5 @@
 class TimersController < ApplicationController
 
-  def get_seconds(minutes = 0, seconds = 0)
-    (minutes.to_i * 60) + seconds.to_i
-  end
-
-  def zero_check(seconds)
-    if seconds < 1
-      flash[:error] = "Timers must be greater than 0 seconds."
-      redirect '/'
-      true
-    end
-  end
-
   post '/timer' do
     seconds = get_seconds(params[:minutes], params[:seconds])
     return if zero_check(seconds)
@@ -48,5 +36,14 @@ class TimersController < ApplicationController
     timer = Timer.find_by_id(params[:id])
     redirect '/' if timer.update(remaining: timer.seconds, started: Time.new.utc, running: false)
   end
+
+  private
+    def zero_check(seconds)
+      if seconds < 1
+        flash[:error] = "Timers must be greater than 0 seconds."
+        redirect '/'
+        true
+      end
+    end
 
 end
